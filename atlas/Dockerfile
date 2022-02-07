@@ -8,7 +8,7 @@ RUN wget https://github.com/OHDSI/Atlas/archive/refs/tags/v2.10.1.zip
 
 RUN unzip v2.10.1.zip
 
-COPY config-local.js /atlas/atlas/js/config-local.js
+COPY config-local.js /atlas/Atlas-2.10.1/js/config-local.js
 
 WORKDIR /atlas/Atlas-2.10.1
 
