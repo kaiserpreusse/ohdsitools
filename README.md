@@ -21,6 +21,9 @@ The local OMOP CDM PostgreSQL database is optional.
 - get the result schema and run on the CDM data source
 	- http://localhost:8080/WebAPI/ddl/results?dialect=postgresql&schema=results&vocabSchema=omop&tempSchema=temp&initConceptHierarchy=true
 
+- http://localhost:8080/WebAPI/source/refresh
+
+
 ### 2. define CDM data source in WebAPI
 
 
