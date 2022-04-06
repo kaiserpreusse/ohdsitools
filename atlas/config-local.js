@@ -3,7 +3,7 @@ define([], function () {
 
 	configLocal.api = {
 		name: 'My Organization Name',
-		url: 'http://webapi:8080/WebAPI/'
+		url: 'http://localhost:8080/WebAPI/'
 	};
 
 	return configLocal;

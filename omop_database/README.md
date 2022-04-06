@@ -1,8 +1,39 @@
 
-- [server setup](#server-setup)
-- [prepare OMOP database](#prepare-omop-database)
+## Athena vocabularies
 
-# server setup
+### prepare vocabulary files
+- aus Lizenzgründen muss ein Vocabulary separat runtergeladen werden, es kann nicht mit den anderen zusammen runtergeladen werden
+- in dem Vocabulary package ist eine Anleitung: `readme.txt`
+- das tool zum runterladen braucht Java
+
+```
+sudo apt-get install default-jre
+```
+
+- das Tool braucht eine UMLS API key
+
+- Erklärung aus der `readme.txt`
+
+```
+CPT4 utility for CDM v5.
+
+This utility will import the CPT4 vocabulary into concept.csv.
+Internet connection is required.
+
+Start import process from command line with:
+ windows: cpt.bat APIKEY
+ linux: ./cpt.sh APIKEY
+
+Use API KEY from UMLS account profile: https://uts.nlm.nih.gov//uts.html#profile
+Do not close or shutdown your PC until the end of import process,
+it will cause damage to concept.csv file.
+
+Please make sure java allowed to make http requests and has write permission to the concept.csv file.
+```
+
+
+
+# Archive: server setup
 ## Distribution herausfinden
 
 ```
@@ -80,34 +111,3 @@ sudo chmod +x /usr/local/bin/docker-compose
 ### create primary keys
 - Execute the script OMOP CDM postgresql v5_3_1 primary keys.sql to add the primary key constraints.
 
-## Athena vocabularies
-
-### prepare vocabulary files
-- aus Lizenzgründen muss ein Vocabulary separat runtergeladen werden, es kann nicht mit den anderen zusammen runtergeladen werden
-- in dem Vocabulary package ist eine Anleitung: `readme.txt`
-- das tool zum runterladen braucht Java
-
-```
-sudo apt-get install default-jre
-```
-
-- das Tool braucht eine UMLS API key
-
-- Erklärung aus der `readme.txt`
-
-```
-CPT4 utility for CDM v5.
-
-This utility will import the CPT4 vocabulary into concept.csv.
-Internet connection is required.
-
-Start import process from command line with:
- windows: cpt.bat APIKEY
- linux: ./cpt.sh APIKEY
-
-Use API KEY from UMLS account profile: https://uts.nlm.nih.gov//uts.html#profile
-Do not close or shutdown your PC until the end of import process,
-it will cause damage to concept.csv file.
-
-Please make sure java allowed to make http requests and has write permission to the concept.csv file.
-```

@@ -1,13 +1,5 @@
 version: '3.8'
 services:
-  omop_database:
-    build: omop_database
-    environment:
-      - POSTGRES_PASSWORD=testme
-      - POSTGRES_DB=omop
-      - POSTGRES_USER=postgres
-    ports:
-      - 15432:5432
   webapi_database:
     build: webapi_database
     environment:
