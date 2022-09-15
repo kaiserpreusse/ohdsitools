@@ -13,46 +13,40 @@
 
 ## Quickstart
 
-1. Run the full stack with docker-compose.
-2. The OMOP CDM database has to be configured according to [Setup OMOP CDM database for WebAPI/ATLAS](##-setup-omop-cdm-database-for-webapiatlas). The configuration has to be performed on existing OMOP CDM databases and the one included in the stack in the same way.
+1. Run the OHDSI tools stack with docker-compose.
+2. Setup OMOP CDM database for WebAPI/ATLAS: The OMOP CDM database has to be configured according to [Setup OMOP CDM database for WebAPI/ATLAS](##-setup-omop-cdm-database-for-webapiatlas). The configuration has to be performed on existing OMOP CDM databases.
+3. Define CDM database connection in WebAPI
 
+### 1. Run the OHDSI tools stack with docker-compose
 
-## Setup OMOP CDM database for WebAPI/ATLAS
+```
+docker-compose -f compose-ohdsi_tools.yml up
+```
 
-### 1. Create temp/results schema in CDM data source
-- create temp and results schema in the CDM data source
-- get the result schema and run on the CDM data source
+### 2. Setup OMOP CDM database for WebAPI/ATLAS
+
+- create two new schemas in the CDM database: `temp` and `results` (used later)
+- use the following API endpoint to create an SQL script to populate the `results` schema
+	- change `vocabSchema` to the schema where the vocabularies are stored
+	- change `schema` and `tempSchema` only of you did not create `temp` and `results` in step one but want to use other schemas	
 	- http://localhost:8080/WebAPI/ddl/results?dialect=postgresql&schema=results&vocabSchema=omop&tempSchema=temp&initConceptHierarchy=true
-
-- http://localhost:8080/WebAPI/source/refresh
-
-
-### 2. define CDM data source in WebAPI
+- use the script created above to populate the `results` schema
+	- the process takes several minutes because concept hierarchies are integrated
+	- make sure that indexes & constraints exist for the OMOP CDM database
 
 
+### 3. Define CDM database connection in WebAPI
+
+- store the connection to the CDM database in the `webapi.source` table of the WebAPI database
+```
 INSERT INTO webapi.source (source_id, source_name, source_key, source_connection, source_dialect) 
-SELECT nextval('webapi.source_sequence'), 'My Cdm', 'MY_CDM', ' jdbc:postgresql://host.docker.internal:5432/omop?user=postgres&password=testme', 'postgresql';
-
+SELECT nextval('webapi.source_sequence'), 'My Cdm', 'MY_CDM', ' jdbc:postgresql://hostname:5432/omop_schema?user=SomeUser&password=SomeSecret', 'postgresql';
 
 INSERT INTO webapi.source_daimon (source_daimon_id, source_id, daimon_type, table_qualifier, priority) 
 SELECT nextval('webapi.source_daimon_sequence'), source_id, 0, 'omop', 0
 FROM webapi.source
-WHERE source_key = 'MY_CDM'
-;
+WHERE source_key = 'MY_CDM';
+```
 
-INSERT INTO webapi.source_daimon (source_daimon_id, source_id, daimon_type, table_qualifier, priority) 
-SELECT nextval('webapi.source_daimon_sequence'), source_id, 1, 'omop', 1
-FROM webapi.source
-WHERE source_key = 'MY_CDM'
-;
-
-INSERT INTO webapi.source_daimon (source_daimon_id, source_id, daimon_type, table_qualifier, priority) 
-SELECT nextval('webapi.source_daimon_sequence'), source_id, 2, 'results', 1
-FROM webapi.source
-WHERE source_key = 'MY_CDM'
-;
-
-INSERT INTO webapi.source_daimon (source_daimon_id, source_id, daimon_type, table_qualifier, priority) 
-SELECT nextval('webapi.source_daimon_sequence'), source_id, 5, 'temp', 0
-FROM webapi.source
-WHERE source_key = 'MY_CDM'
+- refresh the sources in the WebAPI
+	- http://localhost:8080/WebAPI/source/refresh

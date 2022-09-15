@@ -3,14 +3,14 @@ FROM node:16
 RUN apt-get update; apt-get install -y wget zip;
 
 RUN mkdir /atlas
-WORKDIR atlas
-RUN wget https://github.com/OHDSI/Atlas/archive/refs/tags/v2.10.1.zip
+WORKDIR /atlas
+RUN wget https://github.com/OHDSI/Atlas/archive/refs/tags/v2.11.1.zip
 
-RUN unzip v2.10.1.zip
+RUN unzip v2.11.1.zip
 
-COPY config-local.js /atlas/Atlas-2.10.1/js/config-local.js
+COPY config-local.js /atlas/Atlas-2.11.1/js/config-local.js
 
-WORKDIR /atlas/Atlas-2.10.1
+WORKDIR /atlas/Atlas-2.11.1
 
 RUN npm run build
 
