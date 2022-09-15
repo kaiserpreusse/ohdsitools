@@ -21,7 +21,7 @@
 ### 1. Run the OHDSI tools stack with docker-compose
 
 ```
-docker-compose -f compose-ohdsi_tools.yml up
+docker-compose -f compose-ohdsi_tools.yml up --build
 ```
 
 ### 2. Setup OMOP CDM database for WebAPI/ATLAS
