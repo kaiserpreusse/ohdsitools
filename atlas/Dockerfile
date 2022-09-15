@@ -4,15 +4,16 @@ RUN apt-get update; apt-get install -y wget zip;
 
 RUN mkdir /atlas
 WORKDIR /atlas
-RUN wget https://github.com/OHDSI/Atlas/archive/refs/tags/v2.11.1.zip
 
-RUN unzip v2.11.1.zip
+RUN wget https://github.com/OHDSI/Atlas/releases/download/v2.11.1/atlas.zip
 
-COPY config-local.js /atlas/Atlas-2.11.1/js/config-local.js
+RUN unzip atlas.zip
 
-WORKDIR /atlas/Atlas-2.11.1
+COPY config-local.js /atlas/atlas/js/config-local.js
 
-RUN npm run build
+WORKDIR /atlas/atlas
+
+#RUN npm run build
 
 RUN npm install http-server -g
 
