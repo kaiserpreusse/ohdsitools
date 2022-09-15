@@ -12,6 +12,10 @@
     - the `setup_webapi_db.sh` script creates the schema and users
 - Atlas (`atlas`)
 
+### Overview of architecture and components
+
+![Component model](components.png "Overview")
+
 ## Quickstart
 
 1. Run the OHDSI tools stack with docker-compose.
