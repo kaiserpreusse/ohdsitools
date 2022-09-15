@@ -9,7 +9,7 @@ WORKDIR /webapi
 RUN git clone https://github.com/OHDSI/WebAPI.git
 WORKDIR /webapi/WebAPI
 
-RUN git checkout refs/tags/v2.10.1
+RUN git checkout refs/tags/v2.11.1
 
 RUN mkdir WebAPIConfig
 

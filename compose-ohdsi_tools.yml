@@ -12,7 +12,6 @@ services:
       - 8080:8080
     depends_on:
       - webapi_database
-      - omop_database
   atlas:
     build: atlas
     ports:
