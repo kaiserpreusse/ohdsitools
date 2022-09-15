@@ -1,17 +1,20 @@
 # Atlas & WebAPI for OMOP Development
 
-This repository contains Docker files for:
-- OHDSI WebAPI with a dedicated PostgreSQL database (`webapi` and `webapi_database`)
-- Atlas (`atlas`)
-- A PostgreSQL with the OMOP CDM installed (`omop_database`)
+> ⚠️ Versions, usernames, database names, and other paramters are not configurable yet.
 
-The local OMOP CDM PostgreSQL database is optional.
+## Components
+
+- WebAPI running in Tomcat (`webapi`)
+    - https://github.com/OHDSI/WebAPI
+- Postgres database for the WebAPI (`webapi_database`)
+    - setup described here: https://github.com/OHDSI/WebAPI/wiki/PostgreSQL-Installation-Guide
+    - the `setup_webapi_db.sh` script creates the schema and users
+- Atlas (`atlas`)
 
 ## Quickstart
 
 1. Run the full stack with docker-compose.
-2. Optional if no existing OMOP CDM database: Load data to the OMOP CDM PostgreSQL included in the stack.
-3. The OMOP CDM database has to be configured according to [Setup OMOP CDM database for WebAPI/ATLAS](##-setup-omop-cdm-database-for-webapiatlas). The configuration has to be performed on existing OMOP CDM databases and the one included in the stack in the same way.
+2. The OMOP CDM database has to be configured according to [Setup OMOP CDM database for WebAPI/ATLAS](##-setup-omop-cdm-database-for-webapiatlas). The configuration has to be performed on existing OMOP CDM databases and the one included in the stack in the same way.
 
 
 ## Setup OMOP CDM database for WebAPI/ATLAS
