@@ -1,6 +1,7 @@
 # Atlas & WebAPI for OMOP Development
 
 > ⚠️ Versions, usernames, database names, and other paramters are not configurable yet.
+
 > ⚠️ The webserver for the WebAPI (Tomcat) and the ATLAS UI (node http-server) are not secured and not configured for production use.
 
 ## Components
