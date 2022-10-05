@@ -1,6 +1,9 @@
-FROM tomcat:8-jdk8-openjdk-buster
+#FROM tomcat:8-jdk8-openjdk-buster
+FROM tomcat:10.1.0-jdk11-temurin-jammy
 
 RUN apt-get update; apt-get install -y git maven;
+
+RUN ulimit -c unlimited
 
 RUN mkdir /webapi
 
