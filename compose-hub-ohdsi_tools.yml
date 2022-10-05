@@ -1,13 +1,13 @@
 version: '3.8'
 services:
   webapi_database:
-    image: kaiserpreusse/ohdsitools-webapi_database
+    image: kaiserpreusse/ohdsitools_webapi_database
     environment:
       - POSTGRES_PASSWORD=testme
     ports:
       - 25432:5432
   webapi:
-    image: kaiserpreusse/ohdsitools-webapi
+    image: kaiserpreusse/ohdsitools_webapi
     ports:
       - 8080:8080
     depends_on:
