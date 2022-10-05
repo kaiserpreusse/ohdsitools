@@ -76,3 +76,4 @@ $RECYCLE.BIN/
 .env
 .nova
 .$components.drawio.bkp
+tag_push.sh
