@@ -1,6 +1,5 @@
 FROM tomcat:8-jdk8-openjdk-buster
 
-RUN apt-get update; apt-get install -y apt-transport-https
 RUN apt-get update; apt-get install -y git maven;
 
 RUN ulimit -c unlimited
