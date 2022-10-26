@@ -9,7 +9,7 @@
     <id>webapi-postgresql</id>
     <properties>
       <datasource.driverClassName>org.postgresql.Driver</datasource.driverClassName>
-      <datasource.url>jdbc:postgresql://webapi_database:5432/OHDSI</datasource.url>
+      <datasource.url>jdbc:postgresql://ehden.mh-hannover.local:25432/OHDSI</datasource.url>
       <datasource.username>ohdsi_app_user</datasource.username>
       <datasource.password>ohdsi_app_user</datasource.password>
       <datasource.dialect>postgresql</datasource.dialect>
